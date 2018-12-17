@@ -1,5 +1,5 @@
 """
-https://www.kaggle.com/fabiendaniel/elo-world
+https://www.kaggle.com/gemartin/load-data-reduce-memory-usage
 """
 
 import numpy as np 
