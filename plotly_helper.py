@@ -9,6 +9,13 @@ import pandas as pd
 # from IPython.core.interactiveshell import InteractiveShell
 # InteractiveShell.ast_node_interactivity = "all"
 
+# %matplotlib inline
+# import matplotlib.pyplot as plt
+# import seaborn as sns; sns.set()
+# sns.set_palette(sns.color_palette('tab20', 20))
+# plt.rcParams['figure.figsize'] = [10, 5]
+# plt.rcParams['font.size'] = 12
+
 import plotly
 import plotly.offline as py
 import plotly.graph_objs as go
