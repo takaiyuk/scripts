@@ -5,12 +5,13 @@ import jpholiday
 
 def datetime_to_ymdhms(data, datetime_col, newcol_suffix=None):
     datetime_ser = data[datetime_col]
-    data["year{}".format("_"+newcol_suffix if not newcol_suffix==None else "")] = pd.Index(datetime_ser).year
-    data["month{}".format("_"+newcol_suffix if not newcol_suffix==None else "")] = pd.Index(datetime_ser).month
-    data["day{}".format("_"+newcol_suffix if not newcol_suffix==None else "")] = pd.Index(datetime_ser).day
-    data["hour{}".format("_"+newcol_suffix if not newcol_suffix==None else "")] = pd.Index(datetime_ser).hour
-    data["minute{}".format("_"+newcol_suffix if not newcol_suffix==None else "")] = pd.Index(datetime_ser).minute
-    data["second{}".format("_"+newcol_suffix if not newcol_suffix==None else "")] = pd.Index(datetime_ser).second
+    newcol_suffix = "_"+newcol_suffix if not newcol_suffix==None else ""
+    data["year{}".format(newcol_suffix)] = pd.Index(datetime_ser).year
+    data["month{}".format(newcol_suffix)] = pd.Index(datetime_ser).month
+    data["day{}".format(newcol_suffix)] = pd.Index(datetime_ser).day
+    data["hour{}".format(newcol_suffix)] = pd.Index(datetime_ser).hour
+    data["minute{}".format(newcol_suffix)] = pd.Index(datetime_ser).minute
+    data["second{}".format(newcol_suffix)] = pd.Index(datetime_ser).second
     return data
     
 
