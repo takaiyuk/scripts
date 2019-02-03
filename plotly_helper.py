@@ -29,6 +29,10 @@ py.init_notebook_mode(connected=True)  # You can plot your graphs offline inside
 ## Colors of Viridis: https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 C = ['#3D0553', '#4D798C', '#7DC170', '#F7E642']
 
+## convert categorical to str
+def cat_to_str(arr):
+    return np.array(arr, dtype=str)
+
 ## export plotly graphs as static images
 def write_image(fig, filename, save=False, to_image=False):
     """
