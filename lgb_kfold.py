@@ -1,5 +1,14 @@
-N_FOLDS = 5
-features = train_selected.columns.tolist()
+import numpy as np; np.random.random(42)
+import pandas as pd
+import lightgbm as lgb
+from sklearn.model_selection import KFold, StratifiedKFold
+from sklearn.metrics import roc_auc_score
+import warnings; warnings.filterwarnings("ignore")
+# %matplotlib inline
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns; sns.set()
+
 
 # https://www.kaggle.com/artgor/santander-eda-fe-fs-and-models
 params = {'num_leaves': 63,
@@ -18,3 +27,34 @@ params = {'num_leaves': 63,
           'random_state': 42,
           'metric': 'auc',
           'verbosity': -1}
+
+N_FOLDS = 5
+features = train.columns.tolist()
+target = train["target"].values
+train.drop(["target"], axis=1, inplace=True)
+
+
+folds = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=42)
+oof = np.zeros(len(train_selected))
+sub = np.zeros(len(test_selected))
+feature_importance_df = pd.DataFrame()
+score = [0 for _ in range(folds.n_splits)]
+
+for fold_, (trn_idx, val_idx) in enumerate(folds.split(train_selected.values, target)):
+    X_train, y_train = train.iloc[trn_idx][features], target[trn_idx]
+    X_val, y_val = train.iloc[val_idx][features], target[val_idx]
+    X_test = test.values
+    clf = lgb.LGBMClassifier(**params)
+    clf.fit(X_train, y_train, eval_set=[(X_train, y_train), (X_val, y_val)], 
+            eval_metric= 'auc', verbose= 200, early_stopping_rounds= 200)
+    oof[val_idx] = clf.predict_proba(X_val)[:, 1]
+    sub += clf.predict_proba(X_test)[:, 1] / folds.n_splits
+    score[fold_] = roc_auc_score(target[val_idx], oof[val_idx])
+    fold_importance_df = pd.DataFrame()
+    fold_importance_df["feature"] = features
+    fold_importance_df["importance"] = clf.feature_importances_
+    fold_importance_df["fold"] = N_FOLDS + 1
+    feature_importance_df = pd.concat([feature_importance_df, fold_importance_df], axis=0)
+    print("Fold {}: {}".format(fold_+1, round(score[fold_],5)))
+
+print("CV score(auc): {:<8.5f}, (std: {:<8.5f})".format(roc_auc_score(target, oof), np.std(score)))
