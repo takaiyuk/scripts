@@ -58,3 +58,15 @@ for fold_, (trn_idx, val_idx) in enumerate(folds.split(train_selected.values, ta
     print("Fold {}: {}".format(fold_+1, round(score[fold_],5)))
 
 print("CV score(auc): {:<8.5f}, (std: {:<8.5f})".format(roc_auc_score(target, oof), np.std(score)))
+
+
+def display_importances(feature_importance_df_):
+    cols = feature_importance_df_[["feature", "importance"]].groupby("feature").mean().sort_values(by="importance", ascending=False)[:40].index
+    best_features = feature_importance_df_.loc[feature_importance_df_.feature.isin(cols)]
+    plt.figure(figsize=(8, 10))
+    sns.barplot(x="importance", y="feature", data=best_features.sort_values(by="importance", ascending=False))
+    plt.title('LightGBM Features (avg over folds)')
+    plt.tight_layout()
+    plt.savefig('lgb_importances.png')
+
+display_importances(feature_importance_df)
