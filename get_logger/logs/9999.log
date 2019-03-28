@@ -1,0 +1,15 @@
+[INFO]2019-03-28 23:33:33,957:main:VERSION: 9999
+[INFO]2019-03-28 23:33:33,957:main:lgb_params: {'objective': 'regression', 'metric': 'rmse', 'boosting': 'gbdt', 'max_depth': -1, 'num_leaves': 15, 'learning_rate': 0.01, 'bagging_freq': 5, 'bagging_fraction': 0.7, 'feature_fraction': 0.7, 'min_data_in_leaf': 80, 'bagging_seed': 42, 'silent': -1, 'seed': 42}
+[INFO]2019-03-28 23:33:33,963:main:X.shape: (506, 13), y.shape: (506,)
+[INFO]2019-03-28 23:33:33,964:main:X_train.shape: (404, 13), X_test.shape: (102, 13)
+[DEBUG]2019-03-28 23:33:33,980:main:[10]	valid_0's l2: 68.1076
+[DEBUG]2019-03-28 23:33:33,992:main:[20]	valid_0's l2: 62.5181
+[DEBUG]2019-03-28 23:33:34,021:main:[30]	valid_0's l2: 57.0069
+[DEBUG]2019-03-28 23:33:34,034:main:[40]	valid_0's l2: 52.9342
+[DEBUG]2019-03-28 23:33:34,053:main:[50]	valid_0's l2: 49.1343
+[DEBUG]2019-03-28 23:33:34,070:main:[60]	valid_0's l2: 46.2735
+[DEBUG]2019-03-28 23:33:34,087:main:[70]	valid_0's l2: 43.9113
+[DEBUG]2019-03-28 23:33:34,099:main:[80]	valid_0's l2: 41.9041
+[DEBUG]2019-03-28 23:33:34,108:main:[90]	valid_0's l2: 40.0646
+[DEBUG]2019-03-28 23:33:34,118:main:[100]	valid_0's l2: 38.4342
+[INFO]2019-03-28 23:33:34,122:main:cv score: 6.19953
