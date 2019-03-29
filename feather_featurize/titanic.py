@@ -1,3 +1,8 @@
+"""
+- input/train.csv and input/test.csv are taken from kaggle titanic competition:
+https://www.kaggle.com/c/titanic/data
+"""
+
 import os
 import pandas as pd
 
