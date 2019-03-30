@@ -1,9 +1,6 @@
 """
 - Deep Learningの学習の様子を可視化する、fastprogressがすごく良さげ
 https://qiita.com/AnchorBlues/items/fd9b9bd00042337ed0e2
-
-- if you use fastprogress in Jupyter Lab, install jupyterlab-extension
-https://forums.fast.ai/t/progress-bars-in-ipython-notebooks/22826/24
 """
 import numpy as np
 from fastprogress import master_bar, progress_bar
