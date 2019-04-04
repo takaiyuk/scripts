@@ -141,7 +141,10 @@ def plotly_countplot(data, col, title=None, xtitle=None, ytitle=None):
 
 
 ## Scatterplot
-def plotly_scatterplot(data, xcol, ycol, size=1, title=None, xtitle=None, ytitle=None):
+def plotly_scatterplot(data, xcol, ycol, sizecol=None, textcol=None, title=None, xtitle=None, ytitle=None, size=1):
+    if textcol==None: textcol=xcol
+    if sizecol==None: sizecol=ycol
+    
     trace = [
         go.Scatter(
             x=cat_to_str(data[xcol].values),
@@ -149,13 +152,13 @@ def plotly_scatterplot(data, xcol, ycol, size=1, title=None, xtitle=None, ytitle
             mode='markers',
             marker=dict(sizemode='diameter',
                         sizeref=1,
-                        size=data[ycol].values**size,
+                        size=data[sizecol].values**size,
                         color=data[ycol].values,
                         colorscale='Viridis',
                         reversescale=True,
                         showscale=True
                         ),
-            text=cat_to_str(data['day'].values),
+            text=cat_to_str(data[textcol].values),
         )
     ]
     layout = go.Layout(
@@ -166,8 +169,7 @@ def plotly_scatterplot(data, xcol, ycol, size=1, title=None, xtitle=None, ytitle
         yaxis=dict(title=ytitle, ticklen=5, gridwidth=2),
         showlegend=False
     )
-    fig = go.Figure(data=trace, layout=layout)
-    return py.iplot(fig, show_link=False)
+    fig = go.Figure(data=trace, layout=layou
 
 
 # ------------------------------------------------------------
