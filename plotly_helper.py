@@ -169,7 +169,8 @@ def plotly_scatterplot(data, xcol, ycol, sizecol=None, textcol=None, title=None,
         yaxis=dict(title=ytitle, ticklen=5, gridwidth=2),
         showlegend=False
     )
-    fig = go.Figure(data=trace, layout=layou
+    fig = go.Figure(data=trace, layout=layout)
+    return py.iplot(fig, show_link=False)
 
 
 # ------------------------------------------------------------
