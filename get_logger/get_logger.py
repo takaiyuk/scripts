@@ -14,6 +14,27 @@ import os
 import logging
 from lightgbm.callback import _format_eval_result
 
+def make_new_version(log_dir="logs"):
+    if not os.path.exists(log_dir):
+        os.mkdir(log_dir)
+    
+    logs = os.listdir(log_dir)
+    logs = [int(log.replace(".log", "")) for log in logs if ".log" in log]
+    
+    if logs==[]:
+        new_version = 0
+    else:
+        new_version = np.max(logs)+1
+        
+    if len(str(new_version))==1:
+        new_version = "00" + str(new_version)
+    elif len(str(new_version))==2:
+        new_version = "0" + str(new_version)
+    else:
+        new_version = str(new_version)
+    
+    return new_version
+
 def make_logs_dir(log_dir=None):
     if not log_dir==None:
         if not os.path.exists(log_dir):
