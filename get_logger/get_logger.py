@@ -12,6 +12,7 @@ https://amalog.hateblo.jp/entry/lightgbm-logging-callback
 
 import os
 import logging
+import numpy as np
 from lightgbm.callback import _format_eval_result
 
 def make_new_version(log_dir="logs"):
