@@ -184,14 +184,27 @@ def plotly_lineplot(data, xcol, ycol, title=None, xtitle=None, ytitle=None, rang
     else:
         xaxis = dict(title=xtitle, ticklen=5, zeroline=False, gridwidth=2)
     
-    trace = [
-        go.Scatter(
-            x=data[xcol].values,
-            y=data[ycol].values, 
-            mode='lines', 
-            line=dict(width=5, color=C[0])
-        )
-    ]
+    if type(ycol)==list:
+        trace = []
+        for i in range(len(ycol)):
+            t = [
+                go.Scatter(
+                    x=data[xcol].values,
+                    y=data[ycol[i]].values, 
+                    mode='lines', 
+                    line=dict(width=5, color=C[i])
+                )
+            ]
+            trace.append(t)
+    else:
+        trace = [
+            go.Scatter(
+                x=data[xcol].values,
+                y=data[ycol].values, 
+                mode='lines', 
+                line=dict(width=5, color=C[0])
+            )
+        ]
     layout = go.Layout(
         title=title,
         xaxis=xaxis,
