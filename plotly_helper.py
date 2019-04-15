@@ -191,6 +191,7 @@ def plotly_lineplot(data, xcol, ycol, title=None, xtitle=None, ytitle=None, line
                     x=data[xcol].values,
                     y=data[ycol[i]].values, 
                     mode='lines', 
+                    name=data[ycol[i]].name,
                     line=dict(width=linewidth, color=C[i])
                 )
             trace.append(t)
@@ -200,6 +201,7 @@ def plotly_lineplot(data, xcol, ycol, title=None, xtitle=None, ytitle=None, line
                 x=data[xcol].values,
                 y=data[ycol].values, 
                 mode='lines', 
+                name=data[ycol].name,
                 line=dict(width=linewidth, color=C[0])
             )
         ]
