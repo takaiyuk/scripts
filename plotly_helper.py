@@ -177,7 +177,7 @@ def plotly_scatterplot(data, xcol, ycol, sizecol=None, textcol=None, title=None,
 
 
 ## Lineplot
-def plotly_lineplot(data, xcol, ycol, title=None, xtitle=None, ytitle=None, rangeslider=False, slider_type='date'):
+def plotly_lineplot(data, xcol, ycol, title=None, xtitle=None, ytitle=None, linewidth=2, rangeslider=False, slider_type='date'):
     if rangeslider==True:
         xaxis = dict(title=xtitle, ticklen=5, zeroline=False, gridwidth=2,
                      rangeslider=dict(visible=True), type=slider_type)
@@ -191,7 +191,7 @@ def plotly_lineplot(data, xcol, ycol, title=None, xtitle=None, ytitle=None, rang
                     x=data[xcol].values,
                     y=data[ycol[i]].values, 
                     mode='lines', 
-                    line=dict(width=5, color=C[i])
+                    line=dict(width=linewidth, color=C[i])
                 )
             trace.append(t)
     else:
@@ -200,7 +200,7 @@ def plotly_lineplot(data, xcol, ycol, title=None, xtitle=None, ytitle=None, rang
                 x=data[xcol].values,
                 y=data[ycol].values, 
                 mode='lines', 
-                line=dict(width=5, color=C[0])
+                line=dict(width=linewidth, color=C[0])
             )
         ]
     layout = go.Layout(
