@@ -19,14 +19,17 @@ lgb_params = {'num_leaves': 63,
               'learning_rate': 0.1,
               'boosting': 'gbdt',
               'feature_fraction': 0.9,
-              'bagging_freq': 1,
-              'bagging_fraction': 0.9,
+              'subsample_freq': 1,
+              'subsample': 0.9,
               'bagging_seed': 11,
-              'lambda_l1': 0.2,
-              'lambda_l2': 0.2,
+              'reg_alpha': 0.2,
+              'reg_lambda': 0.2,
               'random_state': 42,
               'metric': 'auc',
-              'verbosity': -1}
+              'verbosity': -1,
+              'max_bin': 255,
+              'min_data_in_bin': 3,
+             }
 
 def RMSE(true, pred):
     return mean_squared_error(true, pred)**0.5
